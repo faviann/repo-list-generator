@@ -13,6 +13,7 @@ const { join } = require('path');
 const { writeFileSync } = require('fs');
 const _user = getInput('user').split(`/`).shift();
 const my_token = getInput('my_token');
+const regex = new RegExp(getInput('regex'));
 const octokit = new getOctokit(my_token);
 const asyncFilter = async (arr, predicate) =>
   Promise.all(arr.map(predicate)).then(results => arr.filter((_v, index) => results[index]));
@@ -56,8 +57,9 @@ let getAll = async function (user, page = 10) {
   }
   var repo_info = join('.repo_list', 'repo-info.json');
   debug(`repo-info: ${repo_info}`);
+  debug(`repo-info: ${regex}`);
   if (isDebug()) writeFileSync(repo_info, JSON.stringify(repo_list, null, 2), 'utf-8');
-  repo_list = reject(repo_list, item => item.owner.login != user);
+  repo_list = reject(repo_list, item => item.owner.login != user || !item.name.match(regex));
   var repo_list_name = pluck(repo_list, 'name');
   var repo_list_private = pluck(repo_list, 'private');
   var repo_list_fork = pluck(repo_list, 'fork');

@@ -35,6 +35,8 @@ async function run() {
     const allow_empty = getInput('allow_empty').toUpperCase() === 'TRUE' ? true : false;
     info(`[INFO]: allow_empty: ${allow_empty}`);
     info(`[INFO]: isDebug: ${isDebug()}`);
+    const regex = getInput('regex');
+    info(`[INFO]: regex: ${regex}`);
     if (!existsSync(repo_list_cache) && isDebug()) await mkdirP(repo_list_cache);
     else if (existsSync(repo_list_cache) && isDebug())
       throw Error(`The cache directory(${repo_list_cache}) is occupied!`);
