@@ -38,7 +38,7 @@ inputs:
     required: false
     default: false
   regex:
-    description: 'The regex pattern to match repository names. By default .*'
+    description: 'The string regex pattern to match repository names. By default .*'
     required: false
     default: '.*'
     
