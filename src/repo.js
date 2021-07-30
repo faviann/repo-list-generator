@@ -57,7 +57,7 @@ let getAll = async function (user, page = 10) {
   }
   var repo_info = join('.repo_list', 'repo-info.json');
   debug(`repo-info: ${repo_info}`);
-  debug(`repo-info: ${regex}`);
+  debug(`regex: ${regex}`);
   if (isDebug()) writeFileSync(repo_info, JSON.stringify(repo_list, null, 2), 'utf-8');
   repo_list = reject(repo_list, item => item.owner.login != user || !item.name.match(regex));
   var repo_list_name = pluck(repo_list, 'name');
