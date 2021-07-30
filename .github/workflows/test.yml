@@ -59,7 +59,7 @@ jobs:
         id: repo2
         uses: ./
         with:
-          user: yi-xu-test-organization
+          user: faviann
           block_list: 'test-repo'
 
       - name: Echo Output for organization with GITHUB_TOKEN
@@ -78,7 +78,7 @@ jobs:
         uses: ./
         with:
           my_token: ${{ secrets.REPO_TOKEN }}
-          user: yi-xu-test-organization
+          user: faviann
           block_list: 'test-repo'
 
       - name: Echo Output for organization and REPO_TOKEN
